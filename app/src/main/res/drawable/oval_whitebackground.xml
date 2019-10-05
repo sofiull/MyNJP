@@ -6,10 +6,10 @@
         android:bottomLeftRadius="0dp"
         android:bottomRightRadius="0dp"
         android:radius="0dp"
-        android:topLeftRadius="25dp"
-        android:topRightRadius="25dp" />
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp" />
 
-    <solid android:color="#D30909" />
+    <solid android:color="#FFFFFF" />
 
     <padding
         android:bottom="0dp"
@@ -18,7 +18,7 @@
         android:top="0dp" />
 
     <size
-        android:height="100dp"
-        android:width="100dp" />
+        android:height="400dp"
+        android:width="600dp" />
 
 </shape>
