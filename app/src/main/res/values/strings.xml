@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MyNJP</string>
+    <string name="Hallo">Hallo,</string>
+    <string name="User">User</string>
+    <string name="Brand">NJP</string>
+    <string name="Express">EXPRESS</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
