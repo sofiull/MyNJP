@@ -10,4 +10,9 @@
     <string name="Me">Me</string>
     <string name="home">Home</string>
     <string name="rates">Rates</string>
+    <string name="loginButton">Login</string>
+    <string name="LoginPlease">Silahkan Login</string>
+    <string name="name">Name</string>
+    <string name="name_hint">Masukkan nama</string>
+    <string name="alamat_hint">Masukkan alamat</string>
 </resources>
