@@ -187,7 +187,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_container"
         app:layout_constraintVertical_bias="0.555" />
 
     <ImageView
@@ -196,7 +196,7 @@
         android:layout_height="28dp"
         android:layout_marginStart="78dp"
         android:layout_marginLeft="78dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider"
@@ -210,11 +210,11 @@
         android:layout_marginStart="70dp"
         android:layout_marginLeft="70dp"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="4dp"
         android:text="@string/rates"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_container" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
