@@ -15,4 +15,11 @@
     <string name="name">Name</string>
     <string name="name_hint">Masukkan nama</string>
     <string name="alamat_hint">Masukkan alamat</string>
+    <string name="tujuan_hint">Destination</string>
+    <string name="asal_hint">Origin</string>
+    <string name="reset">RESET</string>
+    <string name="Dimension">Items Weight:</string>
+    <string name="weigthText">0 KG</string>
+    <string name="saveButton">Save</string>
+    <string name="checkButton">Check</string>
 </resources>

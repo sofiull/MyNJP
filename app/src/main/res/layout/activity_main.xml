@@ -160,7 +160,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Home"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:onClick="ShowHome"/>
 
     <ImageView
         android:id="@+id/Me"
@@ -190,7 +191,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_container"
-        app:layout_constraintVertical_bias="0.555" />
+        app:layout_constraintVertical_bias="0.555"
+        android:onClick="ShowAbout"/>
 
     <ImageView
         android:id="@+id/rates"
@@ -203,7 +205,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_monetization_on_black_24dp" />
+        app:srcCompat="@drawable/ic_monetization_on_black_24dp"
+        android:onClick="ShowRates"/>
 
     <TextView
         android:id="@+id/ratestxt"

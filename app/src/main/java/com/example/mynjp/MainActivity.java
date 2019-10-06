@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.example.mynjp.fragments.AboutFragment;
 import com.example.mynjp.fragments.HomeFragment;
+import com.example.mynjp.fragments.RatesFragment;
 
 public class MainActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
@@ -28,5 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void ShowHome(View view) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+    }
+
+    public void ShowRates(View view) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RatesFragment()).commit();
     }
 }
