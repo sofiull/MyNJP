@@ -34,4 +34,5 @@ public class MainActivity extends AppCompatActivity {
     public void ShowRates(View view) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RatesFragment()).commit();
     }
+
 }
