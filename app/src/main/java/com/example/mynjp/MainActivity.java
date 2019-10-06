@@ -25,4 +25,8 @@ public class MainActivity extends AppCompatActivity {
     public void ShowAbout(View view) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
     }
+
+    public void ShowHome(View view) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+    }
 }

@@ -145,7 +145,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_home_black_24dp" />
+        app:srcCompat="@drawable/ic_home_black_24dp"
+        android:onClick="ShowHome"/>
 
     <TextView
         android:id="@+id/hometxt"
