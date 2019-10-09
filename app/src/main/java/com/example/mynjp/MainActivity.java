@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mynjp.fragments.AboutFragment;
 import com.example.mynjp.fragments.HomeFragment;
 import com.example.mynjp.fragments.RatesFragment;
 import com.example.mynjp.model.User;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RatesFragment.OnFragmentInteractionListener {
     private HomeFragment homeFragment;
     private AboutFragment aboutFragment;
 
@@ -49,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void ShowRates(View view) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RatesFragment()).commit();
+    }
+
+    public void onCheckButtonClicked() {
+        Toast.makeText(this, "wow", Toast.LENGTH_SHORT).show();
     }
 
 }
