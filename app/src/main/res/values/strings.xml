@@ -22,4 +22,6 @@
     <string name="weigthText">0 KG</string>
     <string name="saveButton">Save</string>
     <string name="checkButton">Check</string>
+    <string name="Paket1">Paket YES:</string>
+    <string name="Paket2">Paket REG:</string>
 </resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ListKota">
+        <item>MALANG</item>
+        <item>SURABAYA</item>
+        <item>JAKARTA</item>
+        <item>BANDUNG</item>
+        <item></item>
+    </string-array>
+</resources>
