@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,13 +13,14 @@ import com.example.mynjp.fragments.AboutFragment;
 import com.example.mynjp.fragments.HomeFragment;
 import com.example.mynjp.fragments.RatesFragment;
 import com.example.mynjp.model.User;
+import com.example.mynjp.util.RatesCalc;
 
 public class MainActivity extends AppCompatActivity implements RatesFragment.OnFragmentInteractionListener {
+    // variable fragment
     private HomeFragment homeFragment;
     private AboutFragment aboutFragment;
-
-    private String nama;
-    private String alamat;
+    //  variable data
+    private String nama, alamat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements RatesFragment.OnF
     }
 
     public void onCheckButtonClicked() {
-        Toast.makeText(this, "wow", Toast.LENGTH_SHORT).show();
     }
 
 }

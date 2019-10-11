@@ -3,8 +3,8 @@
     <string-array name="ListKota">
         <item>MALANG</item>
         <item>SURABAYA</item>
+        <item>JOGJA</item>
         <item>JAKARTA</item>
         <item>BANDUNG</item>
-        <item></item>
     </string-array>
 </resources>
