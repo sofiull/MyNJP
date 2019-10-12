@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.mynjp.model.User;
 
@@ -31,10 +33,13 @@ public class LoginActivity extends AppCompatActivity {
     public void submit(View view) {
         String nama = namainput.getText().toString();
         String alamat = alamatinput.getText().toString();
-
-        User user = new User(nama,alamat);
-        Intent intent = new Intent(this,MainActivity.class);
-        intent.putExtra("USER_DATA", user);
-        startActivity(intent);
+        if(!TextUtils.isEmpty(nama) && !TextUtils.isEmpty(alamat)) {
+            User user = new User(nama, alamat);
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("USER_DATA", user);
+            startActivity(intent);
+        }else{
+            Toast.makeText(this, "Harap lengkapi data untuk memulai", Toast.LENGTH_SHORT).show();
+        }
     }
 }
