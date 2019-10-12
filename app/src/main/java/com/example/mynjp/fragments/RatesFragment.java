@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +36,13 @@ public class RatesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_rates, container, false);
+        // Bind
+        final TextView berat = view.findViewById(R.id.weightInput);
+        final TextView harga1 = view.findViewById(R.id.harga1text);
+        final TextView harga2 = view.findViewById(R.id.harga2text);
+        final TextView beratText = view.findViewById(R.id.weightText);
 
+        //  Button Check
         Button checkButton = view.findViewById(R.id.checkButton);
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,17 +53,40 @@ public class RatesFragment extends Fragment {
                     Spinner destination = view.findViewById(R.id.destinationInput);
                     int originIndex = lokasi[origin.getSelectedItemPosition()];
                     int destinationIndex = lokasi[destination.getSelectedItemPosition()];
-                    TextView harga1 = view.findViewById(R.id.harga1text);
-                    TextView harga2 = view.findViewById(R.id.harga2text);
-                    TextView berat = view.findViewById(R.id.weightInput);
 
-                    if(!TextUtils.isEmpty(berat.getText().toString())) {
+                    //  Check dulu
+                    if(!TextUtils.isEmpty(berat.getText().toString()) && Float.parseFloat(berat.getText().toString()) > 0) {
                         RatesCalc ratesCalc = new RatesCalc(originIndex, destinationIndex, Float.parseFloat(berat.getText().toString()));
                         harga1.setText("Rp. " + ratesCalc.getRatesYES() + " -- 1 Hari Sampai");
                         harga2.setText("Rp. " + ratesCalc.getRatesREG() + " -- 2-4 Hari Sampai");
+                        beratText.setText(berat.getText().toString()+" KG");
+                    }else if(!TextUtils.isEmpty(berat.getText().toString()) && Float.parseFloat(berat.getText().toString()) <= 0) {
+                        Toast.makeText(getActivity(), "Berat harus lebih dari 0", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(getActivity(), "Masukkan berat barang", Toast.LENGTH_SHORT).show();
                     }
+                }
+            }
+        });
+
+        //  Button add
+        ImageView addButton = view.findViewById(R.id.addbutton);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                berat.setText(Float.parseFloat(berat.getText().toString())+0.5+"");
+            }
+        });
+
+        //  Button Decrease
+        ImageView decreaseButton = view.findViewById(R.id.decreaseButton);
+        decreaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Float.parseFloat(berat.getText().toString()) <= 0){
+                    berat.setText("0.0");
+                }else {
+                    berat.setText(Float.parseFloat(berat.getText().toString()) - 0.5 + "");
                 }
             }
         });
