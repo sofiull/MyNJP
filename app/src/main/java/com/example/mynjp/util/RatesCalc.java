@@ -24,10 +24,16 @@ public class RatesCalc{
     private double calculateYES(){
         jarak = origin - destination;
         if(jarak == 0){
+            if(weight < 1 && weight > 0){
+                weight = 1;
+            }
             jarak = 1;
-        }else if(jarak < 0){
+        }else if(jarak < 0) {
             //  minus ke positif
-            jarak*=-1;
+            if(weight < 1 && weight > 0){
+                weight = 1;
+            }
+            jarak *= -1;
         }
         return jarak*weight*9000;
     }
@@ -35,10 +41,16 @@ public class RatesCalc{
     private double calculateREG(){
         jarak = origin - destination;
         if(jarak == 0){
+            if(weight < 1 && weight > 0){
+                weight = 1;
+            }
             jarak = 1;
-        }else if(jarak < 0){
+        }else if(jarak < 0) {
             //  minus ke positif
-            jarak*=-1;
+            if(weight < 1 && weight > 0){
+                weight = 1;
+            }
+            jarak *= -1;
         }
         return jarak*weight*7000;
     }

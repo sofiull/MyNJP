@@ -90,6 +90,18 @@ public class RatesFragment extends Fragment {
                 }
             }
         });
+
+        //  Button Reset
+        Button resetButton = view.findViewById(R.id.resetButton);
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                harga1.setText("Rp. 0 -- 1 Hari Sampai");
+                harga2.setText("Rp. 0 -- 2-4 Hari Sampai");
+                beratText.setText("0.0 KG");
+                berat.setText("1.0");
+            }
+        });
         return view;
     }
 
