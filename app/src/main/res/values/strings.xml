@@ -24,4 +24,5 @@
     <string name="checkButton">Check</string>
     <string name="Paket1">Paket YES:</string>
     <string name="Paket2">Paket REG:</string>
+    <string name="logoutButton">Logout</string>
 </resources>

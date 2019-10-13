@@ -2,7 +2,10 @@ package com.example.mynjp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements RatesFragment.OnF
     private AboutFragment aboutFragment;
     //  variable data
     private String nama, alamat;
+    long previous;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +47,30 @@ public class MainActivity extends AppCompatActivity implements RatesFragment.OnF
     }
 
     public void ShowAbout(View view) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, aboutFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, aboutFragment,"ABOUT").commit();
     }
 
     public void ShowHome(View view) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, homeFragment,"HOME").commit();
     }
 
     public void ShowRates(View view) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RatesFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RatesFragment(),"RATES").commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(2000+previous>(previous=System.currentTimeMillis())){
+            super.onBackPressed();
+        }else{
+            Toast toast = Toast.makeText(this,"Click one more time to exit",Toast.LENGTH_SHORT);
+            TextView text = (TextView) toast.getView().findViewById(android.R.id.message);
+            text.setTextColor(Color.WHITE);
+            text.setTextSize(14);
+            toast.setGravity(Gravity.CENTER_VERTICAL,0,0);
+            toast.getView().getBackground().setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_IN);
+            toast.show();
+        }
     }
 
     public void onCheckButtonClicked() {

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.AboutFragment">
+    tools:context=".fragments.AboutFragment"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/imageView"
@@ -55,19 +56,33 @@
         app:layout_constraintVertical_bias="0.035" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/saveButton"
         android:layout_width="190dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/rectangle_button"
         android:text="@string/saveButton"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/logoutButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editalamattxt"
         app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="190dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="76dp"
+        android:background="@drawable/rectangle_button"
+        android:text="@string/logoutButton"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

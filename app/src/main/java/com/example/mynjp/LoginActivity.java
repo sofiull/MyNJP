@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("USER_DATA", user);
             startActivity(intent);
+            finish();
         }else{
             Toast.makeText(this, "Harap lengkapi data untuk memulai", Toast.LENGTH_SHORT).show();
         }
