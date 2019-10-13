@@ -7,24 +7,24 @@
     tools:context=".fragments.AboutFragment"
     android:background="@color/white">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilImage"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:src="@mipmap/ic_launcher_round"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.18" />
+        app:layout_constraintVertical_bias="0.088" />
 
     <EditText
         android:id="@+id/editnamatxt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="18dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="296dp"
         android:ems="10"
@@ -33,9 +33,10 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilImage" />
+        app:layout_constraintTop_toBottomOf="@+id/profilImage"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editalamattxt"
