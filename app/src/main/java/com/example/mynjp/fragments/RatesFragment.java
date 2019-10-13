@@ -45,7 +45,7 @@ public class RatesFragment extends Fragment {
         final Spinner origin = view.findViewById(R.id.originInput);
         final Spinner destination = view.findViewById(R.id.destinationInput);
 
-        //  Button Check
+        //  Todo = check tarif kirim
         Button checkButton = view.findViewById(R.id.checkButton);
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +74,7 @@ public class RatesFragment extends Fragment {
             }
         });
 
-        //  Button add
+        //  Todo = increment berat
         ImageView addButton = view.findViewById(R.id.addbutton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +88,7 @@ public class RatesFragment extends Fragment {
             }
         });
 
-        //  Button Decrease
+        //  Todo = decrease berat
         ImageView decreaseButton = view.findViewById(R.id.decreaseButton);
         decreaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +102,7 @@ public class RatesFragment extends Fragment {
             }
         });
 
-        //  Button Reset
+        //  Todo = reset berat, dan tampilan biaya kirim
         Button resetButton = view.findViewById(R.id.resetButton);
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
