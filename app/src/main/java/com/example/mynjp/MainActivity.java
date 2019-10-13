@@ -7,8 +7,6 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +14,6 @@ import com.example.mynjp.fragments.AboutFragment;
 import com.example.mynjp.fragments.HomeFragment;
 import com.example.mynjp.fragments.RatesFragment;
 import com.example.mynjp.model.User;
-import com.example.mynjp.util.RatesCalc;
 
 public class MainActivity extends AppCompatActivity implements RatesFragment.OnFragmentInteractionListener {
     // variable fragment
@@ -43,19 +40,24 @@ public class MainActivity extends AppCompatActivity implements RatesFragment.OnF
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, homeFragment)
                 .commit();
-
     }
 
     public void ShowAbout(View view) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, aboutFragment,"ABOUT").commit();
+        getSupportFragmentManager().beginTransaction().
+                replace(R.id.fragment_container, aboutFragment,"ABOUT")
+                .commit();
     }
 
     public void ShowHome(View view) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, homeFragment,"HOME").commit();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, homeFragment,"HOME")
+                .commit();
     }
 
     public void ShowRates(View view) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RatesFragment(),"RATES").commit();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new RatesFragment(),"RATES")
+                .commit();
     }
 
     @Override
