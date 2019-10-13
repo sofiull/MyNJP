@@ -33,11 +33,11 @@ public class AboutFragment extends Fragment {
 
     public static final String ARG_NAME = "nama";
     public static final String ARG_ALAMAT = "alamat";
-    private String name;
-    private String alamat;
     private static final int GALLERY_REQUEST_CODE = 1;
     private static final String TAG = AboutFragment.class.getCanonicalName();
     private ImageView avatar;
+    private String name;
+    private String alamat;
 
 
     public AboutFragment() {
