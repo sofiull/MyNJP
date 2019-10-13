@@ -26,6 +26,7 @@ import com.example.mynjp.util.RatesCalc;
 public class RatesFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    private String beratString;
 
     public RatesFragment() {
         // Required empty public constructor
@@ -41,6 +42,8 @@ public class RatesFragment extends Fragment {
         final TextView harga1 = view.findViewById(R.id.harga1text);
         final TextView harga2 = view.findViewById(R.id.harga2text);
         final TextView beratText = view.findViewById(R.id.weightText);
+        final Spinner origin = view.findViewById(R.id.originInput);
+        final Spinner destination = view.findViewById(R.id.destinationInput);
 
         //  Button Check
         Button checkButton = view.findViewById(R.id.checkButton);
@@ -49,21 +52,23 @@ public class RatesFragment extends Fragment {
             public void onClick(View v) {
                 if(mListener != null){
                     int lokasi[] = {5,4,3,2,1};
-                    Spinner origin = view.findViewById(R.id.originInput);
-                    Spinner destination = view.findViewById(R.id.destinationInput);
                     int originIndex = lokasi[origin.getSelectedItemPosition()];
                     int destinationIndex = lokasi[destination.getSelectedItemPosition()];
-
-                    //  Check dulu
-                    if(!TextUtils.isEmpty(berat.getText().toString()) && Float.parseFloat(berat.getText().toString()) > 0) {
-                        RatesCalc ratesCalc = new RatesCalc(originIndex, destinationIndex, Float.parseFloat(berat.getText().toString()));
+                    beratString = berat.getText().toString();
+                    //  Check kondisi jika berat = kosong
+                    if(TextUtils.isEmpty(beratString)){
+                        Toast.makeText(getActivity(), "Masukkan berat barang", Toast.LENGTH_SHORT).show();
+                    }
+                    // Check kondisi jika berat = 0
+                    if(!TextUtils.isEmpty(beratString) && Float.parseFloat(beratString) <= 0) {
+                        Toast.makeText(getActivity(), "Berat harus lebih dari 0", Toast.LENGTH_SHORT).show();
+                    }
+                    // Check kondisi jika berat != kosong dan berat > 0
+                    if(!TextUtils.isEmpty(beratString) && Float.parseFloat(beratString) > 0) {
+                        RatesCalc ratesCalc = new RatesCalc(originIndex, destinationIndex, Float.parseFloat(beratString));
                         harga1.setText("Rp. " + ratesCalc.getRatesYES() + " -- 1 Hari Sampai");
                         harga2.setText("Rp. " + ratesCalc.getRatesREG() + " -- 2-4 Hari Sampai");
-                        beratText.setText(berat.getText().toString()+" KG");
-                    }else if(!TextUtils.isEmpty(berat.getText().toString()) && Float.parseFloat(berat.getText().toString()) <= 0) {
-                        Toast.makeText(getActivity(), "Berat harus lebih dari 0", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(getActivity(), "Masukkan berat barang", Toast.LENGTH_SHORT).show();
+                        beratText.setText(beratString+" KG");
                     }
                 }
             }
@@ -74,7 +79,12 @@ public class RatesFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                berat.setText(Float.parseFloat(berat.getText().toString())+0.5+"");
+                beratString = berat.getText().toString();
+                if(TextUtils.isEmpty(beratString)){
+                    berat.setText(0.5+"");
+                }else {
+                    berat.setText(Float.parseFloat(beratString) + 0.5 + "");
+                }
             }
         });
 
@@ -83,10 +93,11 @@ public class RatesFragment extends Fragment {
         decreaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Float.parseFloat(berat.getText().toString()) <= 0){
+                beratString = berat.getText().toString();
+                if (TextUtils.isEmpty(beratString) || Float.parseFloat(beratString) <= 0 ) {
                     berat.setText("0.0");
-                }else {
-                    berat.setText(Float.parseFloat(berat.getText().toString()) - 0.5 + "");
+                } else {
+                    berat.setText(Float.parseFloat(beratString) - 0.5 + "");
                 }
             }
         });

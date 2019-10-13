@@ -22,38 +22,29 @@ public class RatesCalc{
     public int getRatesREG() { return (int) ratesREG; }
 
     private double calculateYES(){
-        jarak = origin - destination;
-        if(jarak == 0){
-            if(weight < 1 && weight > 0){
-                weight = 1;
-            }
-            jarak = 1;
-        }else if(jarak < 0) {
-            //  minus ke positif
-            if(weight < 1 && weight > 0){
-                weight = 1;
-            }
-            jarak *= -1;
+        if (hitungJarak()*weight*7000 < 9000){
+            return 9000;    // harga YES termurah
+        }else{
+            return hitungJarak()*weight*9000;
         }
-        return jarak*weight*9000;
     }
 
     private double calculateREG(){
-        jarak = origin - destination;
-        if(jarak == 0){
-            if(weight < 1 && weight > 0){
-                weight = 1;
-            }
-            jarak = 1;
-        }else if(jarak < 0) {
-            //  minus ke positif
-            if(weight < 1 && weight > 0){
-                weight = 1;
-            }
-            jarak *= -1;
+        if (hitungJarak()*weight*7000 < 7000){
+            return 7000;    // harga reguler termurah
+        }else{
+            return hitungJarak()*weight*7000;
         }
-        return jarak*weight*7000;
     }
 
+    private double hitungJarak(){
+        jarak = origin - destination;
+        if(jarak == 0){         // jika satu kota
+            jarak = 1;
+        }else if(jarak < 0) {   //  minus ke positif
+            jarak *= -1;
+        }
+        return jarak;
+    }
 
 }
