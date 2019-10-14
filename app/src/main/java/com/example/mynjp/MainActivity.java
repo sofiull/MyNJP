@@ -18,8 +18,7 @@ import com.example.mynjp.fragments.RatesFragment;
 import com.example.mynjp.model.User;
 
 public class MainActivity extends AppCompatActivity implements AboutFragment.OnFragmentInteractionListener {
-    // variable fragment
-    private HomeFragment homeFragment;
+
     //  variable data
     private String nama, alamat;
     long previous;
@@ -34,11 +33,8 @@ public class MainActivity extends AppCompatActivity implements AboutFragment.OnF
         nama = user.getNama();
         alamat = user.getAlamat();
 
-        // Todo: Melakukan intance ke fragment
-        homeFragment = HomeFragment.newInstance(nama);
-
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, homeFragment)
+                .replace(R.id.fragment_container, new HomeFragment())
                 .commit();
     }
 
@@ -58,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements AboutFragment.OnF
 
     public void ShowHome(View view) {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, homeFragment,"HOME")
+                .replace(R.id.fragment_container, new HomeFragment(),"HOME")
                 .commit();
     }
 
@@ -71,9 +67,8 @@ public class MainActivity extends AppCompatActivity implements AboutFragment.OnF
     public void onsaveButtonClicked(String nama, String alamat){
         this.nama = nama;
         this.alamat = alamat;
-        homeFragment = HomeFragment.newInstance(this.nama);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container,homeFragment)
+                .replace(R.id.fragment_container,new HomeFragment())
                 .commit();
     }
 

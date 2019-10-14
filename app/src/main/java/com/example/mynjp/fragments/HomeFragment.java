@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.mynjp.MainActivity;
 import com.example.mynjp.R;
 
 /**
@@ -18,28 +19,17 @@ import com.example.mynjp.R;
  */
 public class HomeFragment extends Fragment {
 
-    public static final String ARG_NAME = "name";
     private String name;
-
 
     public HomeFragment() {
         // Required empty public constructor
     }
 
-    public static HomeFragment newInstance(String name){
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_NAME,name);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getArguments() != null){
-            name = getArguments().getString(ARG_NAME);
-        }
+        MainActivity mainActivity = (MainActivity)getActivity();
+        name = mainActivity.getNama();
     }
 
     @Override

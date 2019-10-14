@@ -29,6 +29,7 @@ import java.io.IOException;
  * A simple {@link Fragment} subclass.
  */
 public class AboutFragment extends Fragment {
+
     private OnFragmentInteractionListener mListener;
     // Variable
     public static final String ARG_NAME = "nama";
