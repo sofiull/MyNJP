@@ -1,7 +1,9 @@
 package com.example.mynjp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -15,10 +17,9 @@ import com.example.mynjp.fragments.HomeFragment;
 import com.example.mynjp.fragments.RatesFragment;
 import com.example.mynjp.model.User;
 
-public class MainActivity extends AppCompatActivity implements RatesFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements AboutFragment.OnFragmentInteractionListener {
     // variable fragment
     private HomeFragment homeFragment;
-    private AboutFragment aboutFragment;
     //  variable data
     private String nama, alamat;
     long previous;
@@ -35,16 +36,23 @@ public class MainActivity extends AppCompatActivity implements RatesFragment.OnF
 
         // Todo: Melakukan intance ke fragment
         homeFragment = HomeFragment.newInstance(nama);
-        aboutFragment = AboutFragment.newInstance(nama,alamat);
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, homeFragment)
                 .commit();
     }
 
+    public String getNama() {
+        return nama;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
     public void ShowAbout(View view) {
         getSupportFragmentManager().beginTransaction().
-                replace(R.id.fragment_container, aboutFragment,"ABOUT")
+                replace(R.id.fragment_container, new AboutFragment(),"ABOUT")
                 .commit();
     }
 
@@ -60,6 +68,22 @@ public class MainActivity extends AppCompatActivity implements RatesFragment.OnF
                 .commit();
     }
 
+    public void onsaveButtonClicked(String nama, String alamat){
+        this.nama = nama;
+        this.alamat = alamat;
+        homeFragment = HomeFragment.newInstance(this.nama);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container,homeFragment)
+                .commit();
+    }
+
+    @Override
+    public void onlogoutButtonCLicked() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public void onBackPressed() {
         if(2000+previous>(previous=System.currentTimeMillis())){
@@ -73,9 +97,6 @@ public class MainActivity extends AppCompatActivity implements RatesFragment.OnF
             toast.getView().getBackground().setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_IN);
             toast.show();
         }
-    }
-
-    public void onCheckButtonClicked() {
     }
 
 }

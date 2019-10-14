@@ -1,6 +1,7 @@
 package com.example.mynjp.fragments;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -19,10 +20,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.mynjp.LoginActivity;
 import com.example.mynjp.MainActivity;
 import com.example.mynjp.R;
-import com.example.mynjp.model.User;
 
 import java.io.IOException;
 
@@ -30,11 +29,14 @@ import java.io.IOException;
  * A simple {@link Fragment} subclass.
  */
 public class AboutFragment extends Fragment {
-
+    private OnFragmentInteractionListener mListener;
+    // Variable
     public static final String ARG_NAME = "nama";
     public static final String ARG_ALAMAT = "alamat";
     private static final int GALLERY_REQUEST_CODE = 1;
     private static final String TAG = AboutFragment.class.getCanonicalName();
+    private EditText nameText;
+    private EditText alamatText;
     private ImageView avatar;
     private String name;
     private String alamat;
@@ -44,34 +46,26 @@ public class AboutFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static AboutFragment newInstance(String name, String alamat) {
-        AboutFragment fragment = new AboutFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_NAME, name);
-        args.putString(ARG_ALAMAT, alamat);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            name = getArguments().getString(ARG_NAME);
-            alamat = getArguments().getString(ARG_ALAMAT);
-        }
+        MainActivity mainActivity = (MainActivity)getActivity();
+        name = mainActivity.getNama();
+        alamat = mainActivity.getAlamat();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_about, container, false);
-        final EditText nameText = view.findViewById(R.id.editnamatxt);
-        final EditText alamatText = view.findViewById(R.id.editalamattxt);
+        View view = inflater.inflate(R.layout.fragment_about, container, false);
+        // Bind layout
+        nameText = view.findViewById(R.id.editnamatxt);
+        alamatText = view.findViewById(R.id.editalamattxt);
+        avatar = view.findViewById(R.id.profilImage);
+        // Set Text edit nama & edit alamat
         nameText.setText(name);
         alamatText.setText(alamat);
-        avatar = view.findViewById(R.id.profilImage);
 
         //  Todo = merubah foto
         ImageView profilImage = view.findViewById(R.id.profilImage);
@@ -85,21 +79,18 @@ public class AboutFragment extends Fragment {
 
         //  Todo = menyimpan data user
         Button saveButton = view.findViewById(R.id.saveButton);
-        saveButton.setOnClickListener(new View.OnClickListener(){
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                String namaTemp = nameText.getText().toString();
-                String alamatTemp = alamatText.getText().toString();
-
-                if(namaTemp.equals(name) && alamatTemp.equals(alamat)){
-                    Toast.makeText(getActivity(), "Tidak ada perubahan data", Toast.LENGTH_SHORT).show();
-                }else{
-                    User user = new User(namaTemp,alamatTemp);
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    intent.putExtra("USER_DATA", user);
-                    startActivity(intent);
-                    getActivity().finish();
-                    Toast.makeText(getActivity(), "Data berhail diupdate", Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+                if (mListener != null) {
+                    String namaTemp = nameText.getText().toString();
+                    String alamatTemp = alamatText.getText().toString();
+                    if(namaTemp.equals(name) && alamatTemp.equals(alamat)){
+                        Toast.makeText(getActivity(), "Tidak ada perubahan data", Toast.LENGTH_SHORT).show();
+                    }else{
+                        mListener.onsaveButtonClicked(namaTemp,alamatTemp);
+                        Toast.makeText(getActivity(), "Data berhail diupdate", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -109,9 +100,7 @@ public class AboutFragment extends Fragment {
         logoutButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+                mListener.onlogoutButtonCLicked();
             }
         });
         return view;
@@ -133,4 +122,26 @@ public class AboutFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onsaveButtonClicked(String nama, String alamat);
+        void onlogoutButtonCLicked();
+    }
 }
