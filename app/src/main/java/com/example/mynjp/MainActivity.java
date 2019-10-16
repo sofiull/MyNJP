@@ -1,17 +1,19 @@
 package com.example.mynjp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +26,9 @@ import com.example.mynjp.util.RatesCalc;
 public class MainActivity extends AppCompatActivity implements AboutFragment.OnFragmentInteractionListener,RatesFragment.OnFragmentInteractionListener {
 
     //  variable data
+    private static final int GALLERY_REQUEST_CODE = 1;
     private String nama, alamat;
+    private Uri imageUrl,imageUrlTemp;
     long previous;
 
     @Override
@@ -40,6 +44,31 @@ public class MainActivity extends AppCompatActivity implements AboutFragment.OnF
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new HomeFragment())
                 .commit();
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        AboutFragment aboutFragment = (AboutFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        ImageView avatar = aboutFragment.getView().findViewById(R.id.profilImage);
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == GALLERY_REQUEST_CODE){
+            if(data!=null) {
+                try{
+                    imageUrlTemp=data.getData();
+                    Uri imageUri = imageUrlTemp;
+                    avatar.setImageURI(imageUri);
+                }catch (Exception e){
+                    Toast.makeText(this, "Can't Load image "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+    public Uri getImageUrlTemp() {
+        return imageUrlTemp;
+    }
+
+    public Uri getImageUrl() {
+        return imageUrl;
     }
 
     public String getNama() {
@@ -68,14 +97,26 @@ public class MainActivity extends AppCompatActivity implements AboutFragment.OnF
                 .commit();
     }
 
-    @Override
+    public void onchangeAvatarButtonClicked() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, GALLERY_REQUEST_CODE);
+    }
+
     public void onlogoutButtonCLicked() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
 
-    @Override
+    public void onsaveButtonClicked(String nama, String alamat){
+        this.nama = nama;
+        this.alamat = alamat;
+        this.imageUrl = imageUrlTemp;
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container,new HomeFragment())
+                .commit();
+    }
+
     public void onBackPressed() {
         if(2000+previous>(previous=System.currentTimeMillis())){
             super.onBackPressed();
@@ -88,14 +129,6 @@ public class MainActivity extends AppCompatActivity implements AboutFragment.OnF
             toast.getView().getBackground().setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_IN);
             toast.show();
         }
-    }
-
-    public void onsaveButtonClicked(String nama, String alamat){
-        this.nama = nama;
-        this.alamat = alamat;
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container,new HomeFragment())
-                .commit();
     }
 
     public void  oncheckButtonClicked(String berat, int originLocation, int destinationLocation){
