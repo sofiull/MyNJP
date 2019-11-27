@@ -96,6 +96,9 @@
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="41dp">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </FrameLayout>
 
     <View
