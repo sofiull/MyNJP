@@ -13,7 +13,8 @@
     <string name="loginButton">Login</string>
     <string name="LoginPlease">Silahkan Login</string>
     <string name="name">Name</string>
-    <string name="password_hint">Masukkan Password</string>
+    <string name="name_hint">Masukkan nama</string>
+    <string name="alamat_hint">Masukkan alamat</string>
     <string name="tujuan_hint">Destination</string>
     <string name="asal_hint">Origin</string>
     <string name="reset">RESET</string>
@@ -24,12 +25,4 @@
     <string name="Paket1">Paket YES:</string>
     <string name="Paket2">Paket REG:</string>
     <string name="logoutButton">Logout</string>
-    <string name="registerButton">Register</string>
-    <string name="registerTextview">Not registered?</string>
-    <string name="CreateAccount">Create an account</string>
-    <string name="name_hint">Nama</string>
-    <string name="alamat_hint">alamat</string>
-    <string name="repassword_hint">Konfirmasi Password Baru</string>
-    <string name="email_hint">Email</string>
-    <string name="BackToLogin">Login With Username / Email</string>
 </resources>

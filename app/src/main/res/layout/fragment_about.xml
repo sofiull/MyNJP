@@ -9,15 +9,14 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilImage"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="149dp"
+        android:layout_height="98dp"
         android:src="@mipmap/ic_launcher_round"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintVertical_bias="0.031" />
 
     <EditText
         android:id="@+id/editnamatxt"
@@ -51,15 +50,15 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editnamatxt"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.432" />
 
     <Button
         android:id="@+id/saveButton"
-        android:layout_width="190dp"
-        android:layout_height="45dp"
+        android:layout_width="145dp"
+        android:layout_height="37dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/rectangle_button"
         android:text="@string/saveButton"
@@ -68,21 +67,72 @@
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/logoutButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editalamattxt"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/logoutButton"
-        android:layout_width="190dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="76dp"
+        android:layout_width="151dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/rectangle_button"
         android:text="@string/logoutButton"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="390dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="144dp"
+        android:autofillHints="Masukkan Kota"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.761"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/text_username"
+        android:layout_width="392dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="184dp"
+        android:ems="10"
+        android:hint="@string/username_hint"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="391dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="304dp"
+        android:ems="10"
+        android:hint="@string/password_hint"
+        android:inputType="textPassword"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="391dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="252dp"
+        android:ems="10"
+        android:hint="@string/re_password_hint"
+        android:inputType="textPassword"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
