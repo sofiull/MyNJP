@@ -5,11 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.mynjp.fragments.LoginFragment;
+import com.example.mynjp.fragments.RegisterFragment;
 import com.example.mynjp.model.User;
 
 public class LoginActivity extends AppCompatActivity {
@@ -20,8 +21,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        namainput = findViewById(R.id.input_name);
-        alamatinput = findViewById(R.id.input_alamat);
+        namainput = findViewById(R.id.input_email);
+        alamatinput = findViewById(R.id.input_password);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new LoginFragment())
+                .commit();
     }
 
 //    @Override
