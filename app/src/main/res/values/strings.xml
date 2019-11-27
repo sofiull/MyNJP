@@ -13,11 +13,8 @@
     <string name="loginButton">Login</string>
     <string name="LoginPlease">Silahkan Login</string>
     <string name="name">Name</string>
-    <string name="name_hint">Masukkan Nama</string>
-    <string name="alamat_hint">Masukkan Alamat</string>
-    <string name="username_hint">Masukkan Username</string>
-    <string name="password_hint">Masukkan Password</string>
-    <string name="re_password_hint">Masukkan Kembali Password</string>
+    <string name="name_hint">Masukkan nama</string>
+    <string name="alamat_hint">Masukkan alamat</string>
     <string name="tujuan_hint">Destination</string>
     <string name="asal_hint">Origin</string>
     <string name="reset">RESET</string>
