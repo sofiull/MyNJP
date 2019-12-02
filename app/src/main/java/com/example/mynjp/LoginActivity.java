@@ -83,6 +83,17 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    public void delete(){
+        AuthUI.getInstance()
+                .delete(this)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        //..
+                    }
+                });
+    }
+
     public void submit(View view) {
         String nama = namainput.getText().toString();
         String alamat = alamatinput.getText().toString();
