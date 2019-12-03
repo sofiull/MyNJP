@@ -16,6 +16,10 @@
     <string name="name_hint">Masukkan nama</string>
     <string name="alamat_hint">Masukkan alamat</string>
     <string name="tujuan_hint">Destination</string>
+    <string name="email_hint">Masukkan Email</string>
+    <string name="password_hint">Masukkan Password</string>
+    <string name="registerTextview">Belum Punya Akun?</string>
+    <string name="CreateAccount">Daftar disini</string>
     <string name="asal_hint">Origin</string>
     <string name="reset">RESET</string>
     <string name="Dimension">Items Weight:</string>
@@ -25,4 +29,7 @@
     <string name="Paket1">Paket YES:</string>
     <string name="Paket2">Paket REG:</string>
     <string name="logoutButton">Logout</string>
+    <string name="BackToLogin">Kembali ke Login</string>
+    <string name="registerButton">Submit</string>
+    <string name="repassword_hint">Masukkan kembali password</string>
 </resources>
