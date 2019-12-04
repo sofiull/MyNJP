@@ -22,6 +22,9 @@ import java.util.List;
 
 public class FirebaseUIActivity extends AppCompatActivity {
 
+    static String name;
+    static String email;
+    static String emailEscaped;
     private static final int RC_SIGN_IN = 123;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,8 @@ public class FirebaseUIActivity extends AppCompatActivity {
 
     public void createSignInIntent(){
         List<AuthUI.IdpConfig> providers = Arrays.asList(
-                new AuthUI.IdpConfig.GoogleBuilder().build()
+                new AuthUI.IdpConfig.GoogleBuilder().build(),
+                new AuthUI.IdpConfig.EmailBuilder().build()
         );
         startActivityForResult(
                 AuthUI.getInstance()
@@ -47,6 +51,10 @@ public class FirebaseUIActivity extends AppCompatActivity {
             IdpResponse response = IdpResponse.fromResultIntent(data);
             if (resultCode == RESULT_OK){
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                email = user.getEmail();
+                emailEscaped = email.replaceAll("\\.","DOT").replaceFirst("@","AT");
+                name = user.getDisplayName();
+
             } else {
                 // Sign in failed. If response is null the user canceled the
                 // sign-in flow using the back button. Otherwise check
