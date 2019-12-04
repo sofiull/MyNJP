@@ -92,6 +92,22 @@
         app:layout_constraintTop_toBottomOf="@+id/input_password"
         app:layout_constraintVertical_bias="0.0" />
 
+    <Button
+        android:id="@+id/loginButton2"
+        android:layout_width="123dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/fui_idp_button_background_google"
+        android:text="@string/loginButton"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_password"
+        app:layout_constraintVertical_bias="0.466" />
+
     <TextView
         android:id="@+id/createAccount"
         android:layout_width="wrap_content"
@@ -120,4 +136,13 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintEnd_toStartOf="@+id/loginButton2"
+        app:srcCompat="@drawable/common_google_signin_btn_icon_light" />
 </androidx.constraintlayout.widget.ConstraintLayout>
