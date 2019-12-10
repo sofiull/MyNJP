@@ -1,5 +1,6 @@
 package com.example.mynjp;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,9 +8,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -20,14 +23,21 @@ import android.widget.Toast;
 import com.example.mynjp.fragments.AboutFragment;
 import com.example.mynjp.fragments.HomeFragment;
 import com.example.mynjp.fragments.RatesFragment;
+import com.example.mynjp.model.Database;
 import com.example.mynjp.model.User;
 import com.example.mynjp.util.RatesCalc;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements AboutFragment.OnFragmentInteractionListener,RatesFragment.OnFragmentInteractionListener {
 
     //  variable data
+    private static final String TAG = "MainActivity";
     private static final int GALLERY_REQUEST_CODE = 1;
-    private String nama, alamat;
+    private String nama, alamat, kota, banner;
     private Uri imageUrl,imageUrlTemp;
     long previous;
 
@@ -61,6 +71,29 @@ public class MainActivity extends AppCompatActivity implements AboutFragment.OnF
                 }
             }
         }
+    }
+
+    public void dbReadWrite(){
+        // References: https://firebase.google.com/docs/database/android/start
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference banner = database.getReference("banner");
+        DatabaseReference user = database.getReference("user");
+
+        user.setValue(nama);
+
+        user.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String valueUser = dataSnapshot.getValue(String.class);
+                Log.d(TAG, "Value is: " + valueUser);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w(TAG, "Failed to read value. ", databaseError.toException());
+            }
+        });
     }
 
     public Uri getImageUrlTemp() {

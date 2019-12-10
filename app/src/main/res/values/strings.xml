@@ -32,4 +32,6 @@
     <string name="BackToLogin">Kembali ke Login</string>
     <string name="registerButton">Submit</string>
     <string name="repassword_hint">Masukkan kembali password</string>
+    <string name="username_hint">Masukkan Username</string>
+    <string name="re_password_hint">Masukkan Kembali Password</string>
 </resources>

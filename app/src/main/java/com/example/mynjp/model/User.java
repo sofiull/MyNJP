@@ -7,9 +7,11 @@ public class User implements Parcelable {
     private String nama;
     private String alamat;
 
+
     public User(String nama, String alamat) {
         this.nama = nama;
         this.alamat = alamat;
+
     }
 
     public String getNama() {
@@ -18,6 +20,9 @@ public class User implements Parcelable {
 
     public String getAlamat() {
         return alamat;
+    }
+
+    public User() {
     }
 
     @Override
@@ -31,15 +36,12 @@ public class User implements Parcelable {
         dest.writeString(this.alamat);
     }
 
-    public User() {
-    }
-
     protected User(Parcel in) {
         this.nama = in.readString();
         this.alamat = in.readString();
     }
 
-    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+    public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
         public User createFromParcel(Parcel source) {
             return new User(source);

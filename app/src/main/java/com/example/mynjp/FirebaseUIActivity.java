@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,6 +57,7 @@ public class FirebaseUIActivity extends AppCompatActivity {
                 name = user.getDisplayName();
 
             } else {
+                Toast.makeText(this, "Login Gagal, Harap Coba Lagi", Toast.LENGTH_SHORT).show();
                 // Sign in failed. If response is null the user canceled the
                 // sign-in flow using the back button. Otherwise check
                 // response.getError().getErrorCode() and handle the error.
