@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.mynjp.fragments.AboutFragment;
 import com.example.mynjp.fragments.HomeFragment;
 import com.example.mynjp.fragments.RatesFragment;
+import com.example.mynjp.fragments.ServiceRatesFragment;
 import com.example.mynjp.model.User;
 import com.example.mynjp.util.RatesCalc;
 
@@ -175,15 +176,18 @@ public class MainActivity extends AppCompatActivity implements AboutFragment.OnF
     }
 
     public void onresetButtonClicked(){
-        RatesFragment ratesFragment = (RatesFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-        TextView hargaYES=ratesFragment.getView().findViewById(R.id.harga1text);
-        TextView hargaREG=ratesFragment.getView().findViewById(R.id.harga2text);
-        TextView beratText=ratesFragment.getView().findViewById(R.id.weightText);
-        TextView berat=ratesFragment.getView().findViewById(R.id.weightInput);
-
-        hargaYES.setText("Rp. 0 -- 1 Hari Sampai");
-        hargaREG.setText("Rp. 0 -- 2-4 Hari Sampai");
-        beratText.setText("0.0 KG");
-        berat.setText("1.0");
+//        RatesFragment ratesFragment = (RatesFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+//        TextView hargaYES=ratesFragment.getView().findViewById(R.id.harga1text);
+//        TextView hargaREG=ratesFragment.getView().findViewById(R.id.harga2text);
+//        TextView beratText=ratesFragment.getView().findViewById(R.id.weightText);
+//        TextView berat=ratesFragment.getView().findViewById(R.id.weightInput);
+//
+//        hargaYES.setText("Rp. 0 -- 1 Hari Sampai");
+//        hargaREG.setText("Rp. 0 -- 2-4 Hari Sampai");
+//        beratText.setText("0.0 KG");
+//        berat.setText("1.0");
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new ServiceRatesFragment())
+                .commit();
     }
 }
