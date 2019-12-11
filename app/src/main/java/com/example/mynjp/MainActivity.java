@@ -36,10 +36,10 @@ public class MainActivity extends AppCompatActivity implements AboutFragment.OnF
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Todo: Mengambil data parcelable dari Login
-        User user = getIntent().getExtras().getParcelable("USER_DATA");
-        nama = user.getNama();
-        alamat = user.getAlamat();
+//        // Todo: Mengambil data parcelable dari Login
+//        User user = getIntent().getExtras().getParcelable("USER_DATA");
+//        nama = user.getNama();
+//        alamat = user.getAlamat();
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new HomeFragment())
