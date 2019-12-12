@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.example.mynjp.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link Fragment} subclass.0
  */
 public class RegisterFragment extends Fragment {
 
