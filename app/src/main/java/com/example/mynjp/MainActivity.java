@@ -31,6 +31,11 @@ public class MainActivity extends AppCompatActivity implements AboutFragment.OnF
     private String nama, alamat;
     private Uri imageUrl,imageUrlTemp;
     long previous;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,19 +180,32 @@ public class MainActivity extends AppCompatActivity implements AboutFragment.OnF
         }
     }
 
-    public void onresetButtonClicked(){
-//        RatesFragment ratesFragment = (RatesFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-//        TextView hargaYES=ratesFragment.getView().findViewById(R.id.harga1text);
-//        TextView hargaREG=ratesFragment.getView().findViewById(R.id.harga2text);
-//        TextView beratText=ratesFragment.getView().findViewById(R.id.weightText);
-//        TextView berat=ratesFragment.getView().findViewById(R.id.weightInput);
-//
-//        hargaYES.setText("Rp. 0 -- 1 Hari Sampai");
-//        hargaREG.setText("Rp. 0 -- 2-4 Hari Sampai");
-//        beratText.setText("0.0 KG");
-//        berat.setText("1.0");
+    public void onOriginTVClicked(){
+        this.status="Origin";
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new ServiceRatesFragment())
                 .commit();
+    }
+
+    @Override
+    public void onDestinationTVClicked() {
+        this.status="Destination";
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new ServiceRatesFragment())
+                .commit();
+    }
+
+    public void onresetButtonClicked(){
+        RatesFragment ratesFragment = (RatesFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        TextView hargaYES=ratesFragment.getView().findViewById(R.id.harga1text);
+        TextView hargaREG=ratesFragment.getView().findViewById(R.id.harga2text);
+        TextView beratText=ratesFragment.getView().findViewById(R.id.weightText);
+        TextView berat=ratesFragment.getView().findViewById(R.id.weightInput);
+
+        hargaYES.setText("Rp. 0 -- 1 Hari Sampai");
+        hargaREG.setText("Rp. 0 -- 2-4 Hari Sampai");
+        beratText.setText("0.0 KG");
+        berat.setText("1.0");
+
     }
 }

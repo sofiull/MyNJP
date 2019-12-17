@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,8 +35,15 @@ public class bannerAdapter extends RecyclerView.Adapter<bannerAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Banner banner = bannerList.get(position);
+        final Banner banner = bannerList.get(position);
         Picasso.get().load(banner.getLink()).fit().into(holder.bannerImage);
+
+        holder.bannerImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), banner.getNama(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
