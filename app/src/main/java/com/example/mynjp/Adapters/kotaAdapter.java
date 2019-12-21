@@ -1,6 +1,9 @@
 package com.example.mynjp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mynjp.MainActivity;
@@ -20,6 +24,7 @@ import java.util.List;
 
 public class kotaAdapter extends RecyclerView.Adapter<kotaAdapter.MyViewHolder> {
     List<Kota> kotaList;
+    public Context context;
 
     public kotaAdapter(List<Kota> kotaList) {
         this.kotaList = kotaList;
@@ -28,11 +33,16 @@ public class kotaAdapter extends RecyclerView.Adapter<kotaAdapter.MyViewHolder> 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
+        context = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View kotaView = layoutInflater.inflate(R.layout.item_kota,parent,false);
         MyViewHolder myViewHolder = new MyViewHolder(kotaView);
         return myViewHolder;
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
     }
 
     @Override
@@ -45,20 +55,23 @@ public class kotaAdapter extends RecyclerView.Adapter<kotaAdapter.MyViewHolder> 
         holder.namaKota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), kota.getNama()+" "+kota.getProvinsi(), Toast.LENGTH_SHORT).show();
-                TextView origin = v.findViewById(R.id.origin_textView);
-                TextView destination = v.findViewById(R.id.destination_textView);
-
-                RatesFragment ratesFragment = new RatesFragment();
-//                if(ratesFragment.getStatus()==1) {
-//                    ratesFragment.setOriginLocation(kota.getJarak());
-//                    origin.setText(kota.getNama());
-//                }else{
-//                    ratesFragment.setDestinationLocation(kota.getJarak());
-//                    destination.setText(kota.getNama());
-//                }
+                //Toast.makeText(v.getContext(), kota.getNama()+" "+kota.getProvinsi(), Toast.LENGTH_SHORT).show();
+                if(mainActivity.getStatus()=="Origin") {
+                    sendMessage(kota.getNama(),kota.getJarak());
+                }else{
+                    sendMessage(kota.getNama(),kota.getJarak());
+                }
             }
         });
+    }
+
+    private void sendMessage(String kota,int jarak) {
+        Log.d("sender", "Broadcasting message");
+        Intent intent = new Intent("data-kota");
+
+        intent.putExtra("kota", kota);
+        intent.putExtra("jarak", jarak);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
     @Override

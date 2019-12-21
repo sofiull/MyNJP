@@ -66,7 +66,7 @@ public class ServiceRatesFragment extends Fragment {
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
                     Kota kota = postSnapshot.getValue(Kota.class);
                     kotaList.add(kota);
-                    Log.d("nama Kota",kota.getProvinsi());
+//                    Log.d("nama Provinsi",kota.getProvinsi());
                 }
                 kotaAdapter kotaAdapter = new kotaAdapter(kotaList);
                 rvKota.setAdapter(kotaAdapter);
