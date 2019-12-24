@@ -45,7 +45,7 @@ public class User implements Parcelable {
         dest.writeString(this.password);
     }
 
-    public User() {
+    public User(String nama, String alamat) {
     }
 
     protected User(Parcel in) {
