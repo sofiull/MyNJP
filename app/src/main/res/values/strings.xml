@@ -25,4 +25,13 @@
     <string name="Paket1">Paket YES:</string>
     <string name="Paket2">Paket REG:</string>
     <string name="logoutButton">Logout</string>
+    <string name="CreateAccount">Create Account</string>
+    <string name="registerTextview">Not registered?</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="re_password_hint">repasss</string>
+    <string name="username_hint">Username</string>
+    <string name="repassword_hint">Confirm password</string>
+    <string name="registerButton">Register</string>
+    <string name="BackToLogin">Back To Login</string>
 </resources>

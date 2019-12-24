@@ -1,9 +1,9 @@
 package com.example.mynjp;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
@@ -17,33 +17,77 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import com.example.mynjp.fragments.AboutFragment;
 import com.example.mynjp.fragments.HomeFragment;
 import com.example.mynjp.fragments.RatesFragment;
-import com.example.mynjp.model.User;
+import com.example.mynjp.fragments.ServiceRatesFragment;
 import com.example.mynjp.util.RatesCalc;
 
-public class MainActivity extends AppCompatActivity implements AboutFragment.OnFragmentInteractionListener,RatesFragment.OnFragmentInteractionListener {
-
+public class MainActivity extends AppCompatActivity implements AboutFragment.OnFragmentInteractionListener,RatesFragment.OnFragmentInteractionListener{
     //  variable data
     private static final int GALLERY_REQUEST_CODE = 1;
-    private String nama, alamat;
+    private String nama, alamat, username, password; // for Fragment About
+    private String status,originValue,destinationValue; // for Rates & Service Rates
+    private int originDistance=0,destinationDistance=0;
     private Uri imageUrl,imageUrlTemp;
     long previous;
+
+    public int getOriginDistance() {
+        return originDistance;
+    }
+
+    public void setOriginDistance(int originDistance) {
+        this.originDistance = originDistance;
+    }
+
+    public int getDestinationDistance() {
+        return destinationDistance;
+    }
+
+    public void setDestinationDistance(int destinationDistance) {
+        this.destinationDistance = destinationDistance;
+    }
+
+    public String getOriginValue() {
+        return originValue;
+    }
+
+    public void setOriginValue(String originValue) {
+        this.originValue = originValue;
+    }
+
+    public String getDestinationValue() {
+        return destinationValue;
+    }
+
+    public void setDestinationValue(String destinationValue) {
+        this.destinationValue = destinationValue;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Todo: Mengambil data parcelable dari Login
-        User user = getIntent().getExtras().getParcelable("USER_DATA");
-        nama = user.getNama();
-        alamat = user.getAlamat();
+//        // Todo: Mengambil data parcelable dari Login
+//        User user = getIntent().getExtras().getParcelable("USER_DATA");
+//        nama = user.getNama();
+//        alamat = user.getAlamat();
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new HomeFragment())
                 .commit();
+
+        LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
+        lbm.registerReceiver(receiver, new IntentFilter("data-kota"));
     }
 
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -77,6 +121,14 @@ public class MainActivity extends AppCompatActivity implements AboutFragment.OnF
 
     public String getAlamat() {
         return alamat;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void ShowAbout(View view) {
@@ -164,6 +216,7 @@ public class MainActivity extends AppCompatActivity implements AboutFragment.OnF
         }
     }
 
+
     public void ondecreaseButtonClicked(String berat){
         RatesFragment ratesFragment = (RatesFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         EditText beratInput=ratesFragment.getView().findViewById(R.id.weightInput);
@@ -174,16 +227,52 @@ public class MainActivity extends AppCompatActivity implements AboutFragment.OnF
         }
     }
 
+    public void onOriginTVClicked(){
+        this.status="Origin";
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new ServiceRatesFragment())
+                .commit();
+    }
+
+    @Override
+    public void onDestinationTVClicked() {
+        this.status="Destination";
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new ServiceRatesFragment())
+                .commit();
+    }
+
     public void onresetButtonClicked(){
-        RatesFragment ratesFragment = (RatesFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-        TextView hargaYES=ratesFragment.getView().findViewById(R.id.harga1text);
-        TextView hargaREG=ratesFragment.getView().findViewById(R.id.harga2text);
-        TextView beratText=ratesFragment.getView().findViewById(R.id.weightText);
-        TextView berat=ratesFragment.getView().findViewById(R.id.weightInput);
+        TextView hargaYES=this.findViewById(R.id.harga1text);
+        TextView hargaREG=this.findViewById(R.id.harga2text);
+        TextView beratText=this.findViewById(R.id.weightText);
+        TextView berat=this.findViewById(R.id.weightInput);
 
         hargaYES.setText("Rp. 0 -- 1 Hari Sampai");
         hargaREG.setText("Rp. 0 -- 2-4 Hari Sampai");
         beratText.setText("0.0 KG");
         berat.setText("1.0");
+
     }
+
+    public BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent != null) {
+                String kota = intent.getStringExtra("kota");
+                int jarak = intent.getIntExtra("jarak",0);
+                if(status.equals("Origin")) {
+                    originValue = kota;
+                    originDistance = jarak;
+                }else{
+                    destinationValue=kota;
+                    destinationDistance=jarak;
+                }
+//                Log.d("w", jarak+"");
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new RatesFragment(),"RATES")
+                        .commit();
+            }
+        }
+    };
 }

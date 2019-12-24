@@ -76,16 +76,15 @@
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
-    <ImageView
-        android:id="@+id/imageBenner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginRight="20dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="110dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Usertxt"
-        app:srcCompat="@drawable/jangkau_indonesia" />
+        app:layout_constraintTop_toBottomOf="@+id/Usertxt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

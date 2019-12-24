@@ -2,16 +2,8 @@ package com.example.mynjp.fragments;
 
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +12,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.example.mynjp.MainActivity;
 import com.example.mynjp.R;
-
-import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,9 +26,14 @@ public class AboutFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     // Variable
     private EditText nameText;
+    private EditText usernameText;
     private EditText alamatText;
+    private EditText passwordText;
+    private EditText repasswordText;
     private String name;
     private String alamat;
+    private String username;
+    private String password;
     private Uri imageUrl;
 
 
@@ -49,6 +47,8 @@ public class AboutFragment extends Fragment {
         MainActivity mainActivity = (MainActivity)getActivity();
         name = mainActivity.getNama();
         alamat = mainActivity.getAlamat();
+        username = mainActivity.getUsername();
+        password = mainActivity.getPassword();
         imageUrl= mainActivity.getImageUrl();
     }
 
@@ -59,11 +59,16 @@ public class AboutFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_about, container, false);
         // Todo: Bind layout
         nameText = view.findViewById(R.id.editnamatxt);
+        usernameText = view.findViewById(R.id.text_username);
         alamatText = view.findViewById(R.id.editalamattxt);
+        passwordText = view.findViewById(R.id.editPassword);
+        repasswordText = view.findViewById(R.id.editRePassword);
         ImageView avatar = view.findViewById(R.id.profilImage);
         // Todo: Set Text
         nameText.setText(name);
         alamatText.setText(alamat);
+        usernameText.setText(username);
+        passwordText.setText(password);
         // Todo: set avatar Image
         if(imageUrl!=null){
             avatar.setImageURI(imageUrl);
@@ -86,13 +91,15 @@ public class AboutFragment extends Fragment {
                 if (mListener != null) {
                     String namaTemp = nameText.getText().toString();
                     String alamatTemp = alamatText.getText().toString();
+                    String usernameTemp = usernameText.getText().toString();
+                    String passwordTemp = passwordText.getText().toString();
                     MainActivity mainActivity = (MainActivity)getActivity();
                     Uri imageTemp = mainActivity.getImageUrlTemp();
 
-                    if(checkDiffrent(namaTemp, alamatTemp, imageTemp)){
+                    if(checkDiffrent(namaTemp, alamatTemp, usernameTemp, passwordTemp, imageTemp)){
                         Toast.makeText(getActivity(), "Tidak ada perubahan data", Toast.LENGTH_SHORT).show();
                     }else{
-                        mListener.onsaveButtonClicked(namaTemp,alamatTemp);
+                        mListener.onsaveButtonClicked(namaTemp,alamatTemp, usernameTemp, passwordTemp);
                         Toast.makeText(getActivity(), "Data berhail diupdate", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -110,8 +117,8 @@ public class AboutFragment extends Fragment {
         return view;
     }
 
-    public boolean checkDiffrent(String nameTemp,String alamatTemp,Uri imageTemp){
-        if(nameTemp.equals(name) && alamatTemp.equals(alamat) && imageUrl==imageTemp){
+    public boolean checkDiffrent(String nameTemp, String alamatTemp, String usernameTemp, String passwordTemp, Uri imageTemp){
+        if(nameTemp.equals(name) && alamatTemp.equals(alamat) && usernameTemp.equals(username) && passwordTemp.equals(password) && imageUrl==imageTemp){
             return true;
         }else{
             return false;
@@ -138,7 +145,7 @@ public class AboutFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onchangeAvatarButtonClicked();
-        void onsaveButtonClicked(String nama, String alamat);
+        void onsaveButtonClicked(String nama, String alamat, String username, String password);
         void onlogoutButtonCLicked();
     }
 }
