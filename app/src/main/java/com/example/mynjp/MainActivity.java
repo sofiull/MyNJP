@@ -1,9 +1,5 @@
 package com.example.mynjp;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +10,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -22,7 +17,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mynjp.Adapters.kotaAdapter;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import com.example.mynjp.fragments.AboutFragment;
 import com.example.mynjp.fragments.HomeFragment;
 import com.example.mynjp.fragments.RatesFragment;
@@ -32,7 +30,7 @@ import com.example.mynjp.util.RatesCalc;
 public class MainActivity extends AppCompatActivity implements AboutFragment.OnFragmentInteractionListener,RatesFragment.OnFragmentInteractionListener{
     //  variable data
     private static final int GALLERY_REQUEST_CODE = 1;
-    private String nama, alamat; // for Fragment About
+    private String nama, alamat, username, password; // for Fragment About
     private String status,originValue,destinationValue; // for Rates & Service Rates
     private int originDistance=0,destinationDistance=0;
     private Uri imageUrl,imageUrlTemp;
@@ -123,6 +121,14 @@ public class MainActivity extends AppCompatActivity implements AboutFragment.OnF
 
     public String getAlamat() {
         return alamat;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void ShowAbout(View view) {

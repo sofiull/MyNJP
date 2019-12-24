@@ -112,7 +112,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editPassword"
         android:layout_width="391dp"
         android:layout_height="57dp"
         android:layout_marginBottom="304dp"
@@ -125,12 +125,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editRePassword"
         android:layout_width="391dp"
         android:layout_height="57dp"
         android:layout_marginBottom="252dp"
         android:ems="10"
-        android:hint="@string/re_password_hint"
+        android:hint="@string/repassword_hint"
         android:inputType="textPassword"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
